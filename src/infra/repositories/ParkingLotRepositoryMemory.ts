@@ -3,13 +3,15 @@ import ParkingLotRepository from "../../core/repositories/ParkingLotRepository";
 
 export default class ParkingLotRepositoryMemory implements ParkingLotRepository {
   parkingLots = [
-    new ParkingLot("shopping", 5,8,22, 2)
+    new ParkingLot("shopping", 5,8,22, 0)
   ];
 
   parkedCars = [];
   
   getParkingLot(code: string): Promise<ParkingLot> {
-    return Promise.resolve(this.parkingLots.find(parkingLot => parkingLot.code === code))
+    const parkingLot = this.parkingLots.find(parkingLot => parkingLot.code === code)
+    parkingLot.occupiedSpaces = this.parkedCars.length
+    return Promise.resolve(parkingLot)
   }
   saveParkedCar(code: string, plate: string, date: Date): void {
     this.parkedCars.push({ code, plate, date })
