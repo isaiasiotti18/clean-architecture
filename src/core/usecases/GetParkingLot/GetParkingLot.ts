@@ -1,4 +1,4 @@
-import ParkingLotRepository from "../repositories/ParkingLotRepository";
+import ParkingLotRepository from "../../repositories/ParkingLotRepository";
 
 export default class GetParkingLot {
   parkingLotRepository: ParkingLotRepository;
