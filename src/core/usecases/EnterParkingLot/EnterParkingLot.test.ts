@@ -3,19 +3,20 @@ import ParkingLotRepositorySQL from "../../../infra/repositories/ParkingLotRepos
 import GetParkingLot from "../GetParkingLot/GetParkingLot";
 import EnterParkingLot from "./EnterParkingLot";
 
-test.skip("Should get parking lot", async function () {
+test("Should get parking lot", async function () {
 	const parkingLotRepositoryMemory = new ParkingLotRepositoryMemory();
 	const parkingLotRepositorySQL = new ParkingLotRepositorySQL();
 	const getParkingLot = new GetParkingLot(parkingLotRepositorySQL);
 	const parkingLot = await getParkingLot.execute("shopping");
 	expect(parkingLot.code).toBe("shopping");
+  console.log(parkingLot)
 });
 
-test("Should enter parking lot", async function () {
+test.skip("Should enter parking lot", async function () {
 	const parkingLotRepositoryMemory = new ParkingLotRepositoryMemory();
-	const parkingLotRepositorySQL = new ParkingLotRepositorySQL();
-	const enterParkingLot = new EnterParkingLot(parkingLotRepositorySQL);
-	const getParkingLot = new GetParkingLot(parkingLotRepositorySQL);
+	//const parkingLotRepositorySQL = new ParkingLotRepositorySQL();
+	const enterParkingLot = new EnterParkingLot(parkingLotRepositoryMemory);
+	const getParkingLot = new GetParkingLot(parkingLotRepositoryMemory);
 	const parkingLotBeforeEnter = await getParkingLot.execute("shopping");
 	expect(parkingLotBeforeEnter.occupiedSpaces).toBe(0);
 	await enterParkingLot.execute("shopping", "MMM-0001", new Date("2021-03-01T10:00:00"));

@@ -7,7 +7,7 @@ const dbConnect = pgp({
   password: 'isaias963',
   host: 'localhost',
   port: 5432,
-  database: 'public',
+  database: 'postgres',
   idleTimeoutMillis: 100
 })
 
